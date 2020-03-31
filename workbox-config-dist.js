@@ -1,7 +1,5 @@
-module.exports = {
-  "globDirectory": "/",
-  "globPatterns": [
-    "**/*.{json,css,pbf,ico,png,html,js,mvt}"
-  ],
-  "swDest": "sw.js"
-};
+new WorkboxPlugin.GenerateSW({
+  clientsClaim: true,
+  skipWaiting: true,
+  exclude: [/swagger-ui/]
+})
