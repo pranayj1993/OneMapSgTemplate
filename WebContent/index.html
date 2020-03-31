@@ -8,7 +8,7 @@
         <title>Singapore Map</title>
        <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
         <script src="https://cdn.onemap.sg/leaflet/onemap-leaflet.js"></script> -->
-		<link rel="stylesheet" href="leaflet/leaflet.css" />
+		<link rel="stylesheet" href="onemap-leaflet.css" />
 		<link rel="manifest" href="manifest.json">
         <link rel="stylesheet" >
 		<link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
@@ -21,7 +21,7 @@
         <div id='mapdiv' style='height:100%;'></div>
       </body>
       
-	<script src="leaflet/leaflet.js"></script>
+	<script src="onemap-leaflet.js"></script>
 	<script>
         var center = L.bounds([1.56073, 104.11475], [1.16, 103.502]).getCenter();
         var map = L.map('mapdiv').setView([center.x, center.y], 12);
