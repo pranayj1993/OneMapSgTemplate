@@ -1,0 +1,68 @@
+ <html>
+      <head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name=" theme-color" content="#ffffff">
+        <title>Singapore Map</title>
+       <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+        <script src="https://cdn.onemap.sg/leaflet/onemap-leaflet.js"></script> -->
+		<link rel="stylesheet" href="leaflet/leaflet.css" />
+		<link rel="manifest" href="manifest.json">
+        <link rel="stylesheet" >
+		<link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="utf-8" http-equiv="encoding">
+		<meta name="msapplication-TileImage" content="images/icons/icon-152x152">
+		<meta name="msapplication-TileColor" content="#ffffff">
+      </head>
+      <body>
+        <div id='mapdiv' style='height:100%;'></div>
+      </body>
+      
+	<script src="leaflet/leaflet.js"></script>
+	<script>
+        var center = L.bounds([1.56073, 104.11475], [1.16, 103.502]).getCenter();
+        var map = L.map('mapdiv').setView([center.x, center.y], 12);
+
+       var basemap = L.tileLayer('https://maps-{s}.onemap.sg/v3/Original/{z}/{x}/{y}.png', {
+        	detectRetina: true,
+			maxZoom: 18,
+			minZoom: 11,
+			attribution: '<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/> New OneMap | Map data &copy; contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'
+        });
+
+        map.setMaxBounds([[1.56073, 104.1147], [1.16, 103.502]]);
+
+        basemap.addTo(map);
+		getLocation();
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          } 
+        }
+
+        function showPosition(position) {           
+          marker = new L.Marker([position.coords.latitude, position.coords.longitude], {bounceOnAdd: false}).addTo(map);             
+          var popup = L.popup()
+          .setLatLng([position.coords.latitude, position.coords.longitude]) 
+          .setContent('You are here!')
+          .openOn(map);         
+        }
+        
+      </script>
+     <script type="text/javascript">
+		if ('serviceWorker' in navigator) {
+		  	console.log('CLIENT: service worker registration in progress.');
+		  	navigator.serviceWorker.register('/service-worker.js').then(function() {
+			    console.log('CLIENT: service worker registration complete.');
+			}, function() {
+				console.log('CLIENT: service worker registration failure.');
+			});
+		} else {
+		  console.log('CLIENT: service worker is not supported.');
+		}
+      </script>
+      
+      </html>
