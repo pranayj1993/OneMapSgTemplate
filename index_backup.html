@@ -1,0 +1,73 @@
+
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Singapore Map</title>
+<link rel="stylesheet" href="onemap-leaflet.css" />
+<link rel="apple-touch-icon" href="touch-icon-iphone.png">
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#d8e8c8" />
+<script>
+	if (window.location.protocol === "http:"
+			&& window.location.origin != "localhost") {
+		location.href = location.href.replace("http://", "https://");
+	}
+	console.log(Notification.permission)
+</script>
+
+
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<meta name="msapplication-TileImage" content="images/icons/icon-152x152">
+<meta name="msapplication-TileColor" content="#ffffff">
+</head>
+<body>
+	<noscript>You need to enable JavaScript to run this app.</noscript>
+	<div id='mapdiv' style='height: 100%;'></div>
+	<script src="onemap-leaflet.js"></script>
+	<script>
+	var center = L.bounds([ 1.56073, 104.11475 ], [ 1.16, 103.502 ])
+			.getCenter();
+	var map = L.map('mapdiv').setView([ center.x, center.y ], 12);
+
+	var basemap = L
+			.tileLayer(
+					'https://maps-{s}.onemap.sg/v3/Original/{z}/{x}/{y}.png',
+					{
+						detectRetina : true,
+						maxZoom : 18,
+						minZoom : 11,
+						attribution : '<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/> New OneMap | Map data &copy; contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'
+					});
+	
+		map.setMaxBounds([ [ 1.56073, 104.1147 ], [ 1.16, 103.502 ] ]);
+	
+		basemap.addTo(map);
+		getLocation();
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition);
+			}
+		}
+	
+		function showPosition(position) {
+			marker = new L.Marker([ position.coords.latitude,
+					position.coords.longitude ], {
+				bounceOnAdd : false
+			}).addTo(map);
+			var popup = L.popup().setLatLng(
+					[ position.coords.latitude, position.coords.longitude ])
+					.setContent('You are here!').openOn(map);
+		}
+	</script>
+
+	<script type="text/javascript">
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/sw.js').then(function() {
+				console.log("Service Worker Registered");
+			});
+		}
+	</script>
+</body>
+</html>
