@@ -19,18 +19,16 @@
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 <meta content="utf-8" http-equiv="encoding">
 <meta name="msapplication-TileImage" content="images/icons/icon-152x152">
-<meta name="msapplication-TileColor" content="#ffffff"><!-- 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" /> -->
+<meta name="msapplication-TileColor" content="#ffffff">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+<script src="https://cdn.onemap.sg/leaflet/onemap-leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<link rel="stylesheet" href="onemap-leaflet.css" />
 </head>
 <body>
 	<noscript>You need to enable JavaScript to run this app.</noscript>
 	<div id='mapdiv' style='height: 100%;'></div>
-	<!-- <script src="https://cdn.onemap.sg/leaflet/onemap-leaflet.js"></script> -->
-	<script src="onemap-leaflet.js"></script>
-		
-	  <script>
+	 <script>
         var center = L.bounds([1.56073, 104.11475], [1.16, 103.502]).getCenter();
         var map = L.map('mapdiv').setView([center.x, center.y], 12);
 
@@ -43,11 +41,11 @@
         map.setMaxBounds([[1.56073, 104.1147], [1.16, 103.502]]);
 
         basemap.addTo(map);
-		getLocation();
+
         function getLocation() {
-         // if (navigator.geolocation) {
+          if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
-          //} 
+          } 
         }
 
         function showPosition(position) {           
@@ -65,6 +63,22 @@
 				console.log("Service Worker Registered");
 			});
 		}
+	</script>
+	<script type="text/javascript">
+		var data = {
+			  resource_id: '139a3035-e624-4f56-b63f-89ae28d4ae4c', // the resource id
+			  limit: 5, // get 5 results
+			  q: 'jones' // query for 'jones'
+		};
+		$.ajax({
+		  url: 'https://data.gov.sg/api/action/datastore_search',
+		  data: data,
+		  dataType: 'jsonp',
+		  success: function(data) {
+		    alert('Total results found: ' + data.result.total)
+		  }
+		});
+	
 	</script>
 </body>
 </html>
