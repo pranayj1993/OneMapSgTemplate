@@ -1,0 +1,57 @@
+
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Singapore Map</title>
+<link rel="apple-touch-icon" href="touch-icon-iphone.png">
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#d8e8c8" />
+<!-- <script>
+	if (window.location.protocol === "http:"
+			&& window.location.origin != "localhost") {
+		location.href = location.href.replace("http://", "https://");
+	}
+	console.log(Notification.permission)
+</script>
+ -->
+
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<meta name="msapplication-TileImage" content="images/icons/icon-152x152">
+<meta name="msapplication-TileColor" content="#ffffff">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+<script src="https://cdn.onemap.sg/leaflet/onemap-leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+	<noscript>You need to enable JavaScript to run this app.</noscript>
+	<p style="float:left;"><a href="/index.html">Onemap</a></p>
+	<iframe width="100%" height="100%" src="https://data.gov.sg/dataset/hdb-carpark-information/resource/139a3035-e624-4f56-b63f-89ae28d4ae4c/view/e02fdccf-b667-4ede-a87b-74cb9f1e6080" frameBorder="0"> </iframe>
+
+	<script type="text/javascript">
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/sw.js').then(function() {
+				console.log("Service Worker Registered");
+			});
+		}
+	</script>
+	<!-- <script type="text/javascript">
+		var data = {
+			  resource_id: '139a3035-e624-4f56-b63f-89ae28d4ae4c', // the resource id
+			  limit: 5, // get 5 results
+			  q: 'jones' // query for 'jones'
+		};
+		$.ajax({
+		  url: 'https://data.gov.sg/api/action/datastore_search',
+		  data: data,
+		  dataType: 'jsonp',
+		  success: function(data) {
+		    alert('Total results found: ' + data.result.total)
+		  }
+		});
+	
+	</script> -->
+</body>
+</html>

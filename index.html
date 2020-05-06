@@ -27,11 +27,10 @@
 </head>
 <body>
 	<noscript>You need to enable JavaScript to run this app.</noscript>
+	<p style="float:left;"><a href="/homepage.html">Car Parks</a></p>
+	<div id='mapdiv' style='height: 100%;'></div>
 	
-	<iframe width="100%" height="100%" src="https://data.gov.sg/dataset/hdb-carpark-information/resource/139a3035-e624-4f56-b63f-89ae28d4ae4c/view/e02fdccf-b667-4ede-a87b-74cb9f1e6080" frameBorder="0"> </iframe>
-	<!-- <div id='mapdiv' style='height: 100%;'></div> -->
-	
-	 <!-- <script>
+	 <script>
         var center = L.bounds([1.56073, 104.11475], [1.16, 103.502]).getCenter();
         var map = L.map('mapdiv').setView([center.x, center.y], 12);
 
@@ -58,7 +57,7 @@
           .setContent('You are here!')
           .openOn(map);         
         }
-      </script> -->
+      </script>
 
 	<script type="text/javascript">
 		if ('serviceWorker' in navigator) {
@@ -66,8 +65,16 @@
 				console.log("Service Worker Registered");
 			});
 		}
+		
+		$("#carParks").click(function(){
+		  alert("iframe gov.div");
+		}); 
+
+		$("#oneMapDiv").click(function(){
+		  alert("Onemap div.");
+		}); 
 	</script>
-	<!-- <script type="text/javascript">
+	<script type="text/javascript">
 		var data = {
 			  resource_id: '139a3035-e624-4f56-b63f-89ae28d4ae4c', // the resource id
 			  limit: 5, // get 5 results
@@ -82,6 +89,6 @@
 		  }
 		});
 	
-	</script> -->
+	</script>
 </body>
 </html>
